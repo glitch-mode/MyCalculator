@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.CalculatorFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#151515"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
+
+        <TextView
+            android:id="@+id/text_view_input"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="80dp"
+            android:layout_weight="3"
+            android:paddingStart="16dp"
+            android:paddingLeft="16dp"
+            android:textColor="#FDFDFD"
+            android:textColorHint="#DCD9D9"
+            android:autoSizeTextType="uniform" />
+
+        <LinearLayout
+            style="@style/LayoutStyle"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/text_view_result"
+                style="@style/Functions"
+                android:layout_weight="3"
+                android:background="#303030"
+                android:gravity="center" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:autoSizeTextType="uniform"
+                android:text="DELETE" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/LayoutStyle">
+
+            <Button
+                android:id="@+id/button_seven"
+                style="@style/Numbers"
+                android:text="7" />
+
+            <Button
+                android:id="@+id/button_eight"
+                style="@style/Numbers"
+                android:text="8" />
+
+            <Button
+                android:id="@+id/button_nine"
+                style="@style/Numbers"
+                android:text="9" />
+
+            <Button
+                android:id="@+id/button_div"
+                style="@style/Functions"
+                android:text="÷" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/LayoutStyle">
+
+            <Button
+                android:id="@+id/button_four"
+                style="@style/Numbers"
+                android:text="4" />
+
+            <Button
+                android:id="@+id/button_five"
+                style="@style/Numbers"
+                android:text="5" />
+
+            <Button
+                android:id="@+id/button_six"
+                style="@style/Numbers"
+                android:text="6" />
+
+            <Button
+                android:id="@+id/button_multiplication"
+                style="@style/Functions"
+                android:text="×" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/LayoutStyle">
+
+            <Button
+                android:id="@+id/button_one"
+                style="@style/Numbers"
+                android:text="1" />
+
+            <Button
+                android:id="@+id/button_two"
+                style="@style/Numbers"
+                android:text="2" />
+
+            <Button
+                android:id="@+id/button_three"
+                style="@style/Numbers"
+                android:text="3" />
+
+            <Button
+                android:id="@+id/button_subtraction"
+                style="@style/Functions"
+                android:text="-" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/LayoutStyle">
+
+            <Button
+                android:id="@+id/button_dot"
+                style="@style/Numbers"
+                android:text="." />
+
+            <Button
+                android:id="@+id/button_zero"
+                style="@style/Numbers"
+                android:text="0" />
+
+            <Button
+                android:id="@+id/button_equal"
+                style="@style/Numbers"
+                android:text="=" />
+
+            <Button
+                android:id="@+id/button_summation"
+                style="@style/Functions"
+                android:text="+" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>
