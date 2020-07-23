@@ -5,6 +5,7 @@ import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -43,7 +44,18 @@ public class CalculatorFragment extends Fragment {
         mView = inflater.inflate(R.layout.fragment_calculator, container, false);
         findAllViews();
         setOnClickListeners();
+        if (savedInstanceState != null) {
+            mDoubleResult = savedInstanceState.getDouble("result");
+            mTextViewInput.setText(savedInstanceState.getString("input"));
+        }
         return mView;
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("input", mTextViewInput.getText().toString());
+        outState.putDouble("result", mDoubleResult);
     }
 
     public void findAllViews() {
@@ -87,6 +99,7 @@ public class CalculatorFragment extends Fragment {
                 buttonAnimation(v);
                 String str = mTextViewInput.getText().toString() + " " + s + " ";
                 mTextViewInput.setText(str);
+                Toast.makeText(getActivity(), s, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -128,16 +141,21 @@ public class CalculatorFragment extends Fragment {
             public void onClick(View v) {
                 buttonAnimation(v);
                 calculate();
-                mTextViewResult.setText(String.valueOf(mDoubleResult));
-                mTextViewInput.setText(String.valueOf(mDoubleResult));
+                if (mDoubleResult == (int) mDoubleResult) {
+                    mTextViewResult.setText(String.valueOf(Math.round(mDoubleResult)));
+                    mTextViewInput.setText(String.valueOf(Math.round(mDoubleResult)));
+                } else {
+                    mTextViewResult.setText(String.valueOf(mDoubleResult));
+                    mTextViewInput.setText(String.valueOf(mDoubleResult));
+                }
             }
         });
         mButtonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 delete();
-                mTextViewResult.setText(String.valueOf(mDoubleResult));
-                mTextViewInput.setText(String.valueOf(mDoubleResult));
+                mTextViewResult.setText("");
+                mTextViewInput.setText("");
             }
         });
         setFuncViewListener("+", mButtonSummation);
@@ -153,10 +171,13 @@ public class CalculatorFragment extends Fragment {
                 double d;
                 try {
                     d = Double.parseDouble(s[i + 1]);
-                } catch (IllegalArgumentException illegal) {
+                } catch (NumberFormatException illegal) {
                     continue;
                 }
-                if (mDoubleResult == 0) mDoubleResult = d;
+                if (mDoubleResult == 0) {
+                    mDoubleResult = Double.parseDouble(s[0]);
+                    mTextViewInput.setText(String.valueOf(mDoubleResult));
+                }
                 switch (s[i]) {
                     case "+":
                         mDoubleResult += d;

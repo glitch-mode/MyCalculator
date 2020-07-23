@@ -1,6 +1,7 @@
 package com.example.mycalculator.Controller;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
@@ -16,9 +17,12 @@ public class CalcActivity extends AppCompatActivity {
         setContentView(R.layout.activity_calc);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager
-                .beginTransaction()
-                .add(R.id.fragment_calculator_container, new CalculatorFragment())
-                .commit();
+        Fragment f = fragmentManager.findFragmentById(R.id.fragment_calculator_container);
+        if (f == null) {
+            fragmentManager
+                    .beginTransaction()
+                    .add(R.id.fragment_calculator_container, new CalculatorFragment())
+                    .commit();
+        }
     }
 }
